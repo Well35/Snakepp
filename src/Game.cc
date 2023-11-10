@@ -73,9 +73,15 @@ void Game::update() {
             snakePos.y += snake.get_segmentSize();
             break;
     }
-    std::cout << snakePos.x << " " << snakePos.y << " " << std::endl;
     snake.set_headPos(snakePos.x, snakePos.y);
     snake.move();
+
+    // Handles fruit collision
+    //
+    if (snake.get_headPos().x == m_fruit.x and snake.get_headPos().y == m_fruit.y) {
+        move_fruit();
+    }
+
     SDL_Delay(60);
 }
 
@@ -87,9 +93,9 @@ void Game::draw() {
 }
 
 void Game::move_fruit() {
-    int rand_x = rand() % graphics.get_screen_width();
-    int rand_y = rand() % graphics.get_screen_height();
-    m_fruit = { rand_x, rand_y, 16, 16 };
+    int rand_x = rand() % graphics.get_screen_width() / 16;
+    int rand_y = rand() % graphics.get_screen_height() / 16;
+    m_fruit = { rand_x * 16, rand_y * 16, 16, 16 };
 }
 
 void Game::draw_fruit() {

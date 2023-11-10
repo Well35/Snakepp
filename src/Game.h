@@ -14,7 +14,7 @@ private:
 	void move_fruit();
 	void draw_fruit();
 	Graphics graphics;
-	Snake snake = {200,200};
+	Snake snake = {320,240};
 
 	bool m_gameRunning;
 	double m_currentTime;
