@@ -83,6 +83,12 @@ void Game::update() {
         snake.grow(1);
     }
 
+    // Handles collision between snake head and body
+    //
+    if (snake.check_collision()) {
+        m_gameRunning = false;
+    }
+
     SDL_Delay(60);
 }
 

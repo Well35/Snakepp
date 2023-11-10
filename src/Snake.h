@@ -10,6 +10,7 @@ public:
 	void move();
 	void draw(Graphics& graphics);
 	void grow(int x) { m_growSize += x; }
+	bool check_collision();
 
 	int get_segmentSize() { return m_segmentSize; }
 	Vector2 get_headPos() { return m_headPos; }
