@@ -14,6 +14,7 @@ private:
 	void move_fruit();
 	void draw_fruit();
 	void draw_play_area();
+
 	Graphics graphics;
 	Snake snake{320,240};
 
