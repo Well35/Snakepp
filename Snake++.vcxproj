@@ -142,10 +142,13 @@
     <ClCompile Include="src\Game.cc" />
     <ClCompile Include="src\Graphics.cc" />
     <ClCompile Include="src\main.cc" />
+    <ClCompile Include="src\Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Graphics.h" />
+    <ClInclude Include="src\Snake.h" />
+    <ClInclude Include="src\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

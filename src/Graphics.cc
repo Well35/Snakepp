@@ -25,3 +25,8 @@ void Graphics::clear_screen() {
 void Graphics::show_screen() {
 	SDL_RenderPresent(m_renderer);
 }
+
+void Graphics::render_rect(const SDL_Rect& box, int r, int g, int b) {
+	SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
+	SDL_RenderFillRect(m_renderer, &box);
+}

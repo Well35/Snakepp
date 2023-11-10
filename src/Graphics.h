@@ -7,6 +7,7 @@ public:
 	~Graphics();
 	void clear_screen();
 	void show_screen();
+	void render_rect(const SDL_Rect& box, int r, int g, int b);
 private:
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;

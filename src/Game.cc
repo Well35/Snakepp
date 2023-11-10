@@ -8,6 +8,7 @@ Game::Game() {
     }
     m_gameRunning = true;
     m_currentTime = 0;
+    dir = Direction::RIGHT;
     this->loop();
 }
 
@@ -31,6 +32,22 @@ void Game::input() {
             m_gameRunning = false;
             break;
         }
+        if (event.type == SDL_KEYDOWN) {
+            switch (event.key.keysym.scancode) {
+                case SDL_SCANCODE_W:
+                    dir = Direction::UP;
+                    break;
+                case SDL_SCANCODE_A:
+                    dir = Direction::LEFT;
+                    break;
+                case SDL_SCANCODE_S:
+                    dir = Direction::DOWN;
+                    break;
+                case SDL_SCANCODE_D:
+                    dir = Direction::RIGHT;
+                    break;
+            }
+        }
     }
 }
 
@@ -39,9 +56,29 @@ void Game::update() {
     double currentTime = SDL_GetTicks();
     double deltaTime = (currentTime - lastTime) / 1000.0f;
 
+    Vector2 snakePos = snake.get_headPos();
+    switch (dir) {
+        case Direction::LEFT:
+            snakePos.x -= 16;
+            break;
+        case Direction::RIGHT:
+            snakePos.x += 16;
+            break;
+        case Direction::UP:
+            snakePos.y -= 16;
+            break;
+        case Direction::DOWN:
+            snakePos.y += 16;
+            break;
+    }
+    std::cout << snakePos.x << " " << snakePos.y << " " << std::endl;
+    snake.set_headPos(snakePos.x, snakePos.y);
+    snake.move();
+    SDL_Delay(40);
 }
 
 void Game::draw() {
     graphics.clear_screen();
+    snake.draw(graphics);
     graphics.show_screen();
 }
