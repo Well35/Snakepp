@@ -80,7 +80,7 @@ void Game::update() {
     //
     if (snake.get_headPos().x == m_fruit.x and snake.get_headPos().y == m_fruit.y) {
         move_fruit();
-        snake.grow(10);
+        snake.grow(1);
     }
 
     SDL_Delay(60);
