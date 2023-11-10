@@ -76,10 +76,11 @@ void Game::update() {
     snake.set_headPos(snakePos.x, snakePos.y);
     snake.move();
 
-    // Handles fruit collision
+    // Handles fruit collision and grows snake on collision
     //
     if (snake.get_headPos().x == m_fruit.x and snake.get_headPos().y == m_fruit.y) {
         move_fruit();
+        snake.grow(10);
     }
 
     SDL_Delay(60);

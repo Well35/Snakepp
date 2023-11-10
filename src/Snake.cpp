@@ -5,11 +5,14 @@ Snake::Snake(int initial_x, int initial_y) {
 	m_headPos = { initial_x, initial_y };
 	SDL_Rect r(initial_x, initial_y, m_segmentSize, m_segmentSize);
 	m_body.push_back(r);
+	m_growSize = 1;
 }
 
 void Snake::move() {
 	SDL_Rect r(m_headPos.x, m_headPos.y, m_segmentSize, m_segmentSize);
-	m_body.pop_front();
+	if (!(m_body.size() < m_growSize)) {
+		m_body.pop_front();
+	}
 	m_body.push_back(r);
 }
 
