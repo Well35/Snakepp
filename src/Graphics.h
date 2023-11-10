@@ -11,9 +11,11 @@ public:
 
 	int get_screen_width() { return SCREEN_WIDTH; }
 	int get_screen_height() { return SCREEN_HEIGHT; }
+	int get_border_size() { return BORDER_SIZE; }
 private:
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;
+	const int BORDER_SIZE = 16;
 	SDL_Window* m_window = nullptr;
 	SDL_Surface* m_screenSurface = nullptr;
 	SDL_Renderer* m_renderer = nullptr;

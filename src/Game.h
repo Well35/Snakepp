@@ -13,6 +13,7 @@ private:
 	void draw();
 	void move_fruit();
 	void draw_fruit();
+	void draw_play_area();
 	Graphics graphics;
 	Snake snake{320,240};
 
@@ -23,4 +24,5 @@ private:
 	Direction dir;
 
 	SDL_Rect m_fruit;
+	SDL_Rect m_playArea;
 };

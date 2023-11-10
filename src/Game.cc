@@ -10,6 +10,11 @@ Game::Game() {
     m_gameRunning = true;
     m_currentTime = 0;
     m_rectSizes = 16;
+    m_playArea = {graphics.get_border_size(), 
+                  graphics.get_border_size(), 
+                  graphics.get_screen_width() - graphics.get_border_size(),
+                  graphics.get_screen_height() - graphics.get_border_size()
+                 };
     snake.set_segmentSize(m_rectSizes);
     dir = Direction::RIGHT;
     move_fruit();
@@ -60,10 +65,6 @@ void Game::input() {
 }
 
 void Game::update() {
-    double lastTime = m_currentTime;
-    double currentTime = SDL_GetTicks();
-    double deltaTime = (currentTime - lastTime) / 1000.0f;
-
     Vector2 snakePos = snake.get_headPos();
     switch (dir) {
         case Direction::LEFT:
@@ -100,6 +101,7 @@ void Game::update() {
 
 void Game::draw() {
     graphics.clear_screen();
+    draw_play_area();
     snake.draw(graphics);
     draw_fruit();
     graphics.show_screen();
@@ -113,4 +115,8 @@ void Game::move_fruit() {
 
 void Game::draw_fruit() {
     graphics.render_rect(m_fruit, 255, 0, 0);
+}
+
+void Game::draw_play_area() {
+    graphics.render_rect(m_playArea, 0, 0, 0);
 }
