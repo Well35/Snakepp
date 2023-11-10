@@ -5,10 +5,12 @@
 
 Game::Game() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        std::cout << "SDL could not initialize! SDL_Error: " <<  SDL_GetError() << std::endl;
+        std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
     }
     m_gameRunning = true;
     m_currentTime = 0;
+    m_rectSizes = 16;
+    snake.set_segmentSize(m_rectSizes);
     dir = Direction::RIGHT;
     move_fruit();
     this->loop();
@@ -104,9 +106,9 @@ void Game::draw() {
 }
 
 void Game::move_fruit() {
-    int rand_x = rand() % graphics.get_screen_width() / 16;
-    int rand_y = rand() % graphics.get_screen_height() / 16;
-    m_fruit = { rand_x * 16, rand_y * 16, 16, 16 };
+    int rand_x = rand() % graphics.get_screen_width() / m_rectSizes;
+    int rand_y = rand() % graphics.get_screen_height() / m_rectSizes;
+    m_fruit = { rand_x * m_rectSizes, rand_y * m_rectSizes, m_rectSizes, m_rectSizes };
 }
 
 void Game::draw_fruit() {

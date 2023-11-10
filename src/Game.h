@@ -14,8 +14,9 @@ private:
 	void move_fruit();
 	void draw_fruit();
 	Graphics graphics;
-	Snake snake = {320,240};
+	Snake snake{320,240};
 
+	int m_rectSizes;
 	bool m_gameRunning;
 	double m_currentTime;
 	enum class Direction { LEFT, RIGHT, UP, DOWN };

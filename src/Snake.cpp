@@ -1,7 +1,6 @@
 #include "Snake.h"
 
 Snake::Snake(int initial_x, int initial_y) {
-	m_segmentSize = 16;
 	m_headPos = { initial_x, initial_y };
 	SDL_Rect r(initial_x, initial_y, m_segmentSize, m_segmentSize);
 	m_body.push_back(r);

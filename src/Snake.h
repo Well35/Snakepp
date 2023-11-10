@@ -12,6 +12,8 @@ public:
 	void grow(int x) { m_growSize += x; }
 	bool check_collision();
 
+	void set_segmentSize(int x) { m_segmentSize = x; }
+
 	int get_segmentSize() { return m_segmentSize; }
 	Vector2 get_headPos() { return m_headPos; }
 
