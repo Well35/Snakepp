@@ -1,15 +1,1 @@
-*.slo
-*.lo
-*.o
-*.so
-*.dylib
-*.lai
-*.la
-*.a
-Debug
-Release
-*.suo
-*.csproj.user
-*.vbproj.user
-ipch
-*sdf
+.vs/
