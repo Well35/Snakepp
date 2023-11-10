@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <SDL.h>
 #include <iostream>
+#include <cmath>
 
 Game::Game() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -9,6 +10,7 @@ Game::Game() {
     m_gameRunning = true;
     m_currentTime = 0;
     dir = Direction::RIGHT;
+    move_fruit();
     this->loop();
 }
 
@@ -59,26 +61,44 @@ void Game::update() {
     Vector2 snakePos = snake.get_headPos();
     switch (dir) {
         case Direction::LEFT:
-            snakePos.x -= 16;
+            snakePos.x -= snake.get_segmentSize();
             break;
         case Direction::RIGHT:
-            snakePos.x += 16;
+            snakePos.x += snake.get_segmentSize();
             break;
         case Direction::UP:
-            snakePos.y -= 16;
+            snakePos.y -= snake.get_segmentSize();
             break;
         case Direction::DOWN:
-            snakePos.y += 16;
+            snakePos.y += snake.get_segmentSize();
             break;
     }
-    std::cout << snakePos.x << " " << snakePos.y << " " << std::endl;
     snake.set_headPos(snakePos.x, snakePos.y);
     snake.move();
-    SDL_Delay(40);
+
+    // Handles fruit collision and grows snake on collision
+    //
+    if (snake.get_headPos().x == m_fruit.x and snake.get_headPos().y == m_fruit.y) {
+        move_fruit();
+        snake.grow(1);
+    }
+
+    SDL_Delay(60);
 }
 
 void Game::draw() {
     graphics.clear_screen();
     snake.draw(graphics);
+    draw_fruit();
     graphics.show_screen();
+}
+
+void Game::move_fruit() {
+    int rand_x = rand() % graphics.get_screen_width() / 16;
+    int rand_y = rand() % graphics.get_screen_height() / 16;
+    m_fruit = { rand_x * 16, rand_y * 16, 16, 16 };
+}
+
+void Game::draw_fruit() {
+    graphics.render_rect(m_fruit, 255, 0, 0);
 }
