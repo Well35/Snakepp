@@ -37,15 +37,19 @@ void Game::input() {
         if (event.type == SDL_KEYDOWN) {
             switch (event.key.keysym.scancode) {
                 case SDL_SCANCODE_W:
+                    if (dir == Direction::DOWN) break;
                     dir = Direction::UP;
                     break;
                 case SDL_SCANCODE_A:
+                    if (dir == Direction::RIGHT) break;
                     dir = Direction::LEFT;
                     break;
                 case SDL_SCANCODE_S:
+                    if (dir == Direction::UP) break;
                     dir = Direction::DOWN;
                     break;
                 case SDL_SCANCODE_D:
+                    if (dir == Direction::LEFT) break;
                     dir = Direction::RIGHT;
                     break;
             }
