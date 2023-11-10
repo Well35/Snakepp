@@ -10,6 +10,11 @@ Game::Game() {
     m_gameRunning = true;
     m_currentTime = 0;
     m_rectSizes = 16;
+    m_playArea = {graphics.get_border_size(), 
+                  graphics.get_border_size(), 
+                  graphics.get_screen_width() - graphics.get_border_size(),
+                  graphics.get_screen_height() - graphics.get_border_size()
+                 };
     snake.set_segmentSize(m_rectSizes);
     dir = Direction::RIGHT;
     move_fruit();
@@ -60,10 +65,6 @@ void Game::input() {
 }
 
 void Game::update() {
-    double lastTime = m_currentTime;
-    double currentTime = SDL_GetTicks();
-    double deltaTime = (currentTime - lastTime) / 1000.0f;
-
     Vector2 snakePos = snake.get_headPos();
     switch (dir) {
         case Direction::LEFT:
@@ -94,23 +95,36 @@ void Game::update() {
     if (snake.check_collision()) {
         m_gameRunning = false;
     }
+    // Handles collision with snake going outside border
+    //
+    if (snake.get_headPos().x < m_playArea.x or snake.get_headPos().x > m_playArea.x + m_playArea.w) {
+        m_gameRunning = false;
+    }
+    else if (snake.get_headPos().y < m_playArea.y or snake.get_headPos().y > m_playArea.y + m_playArea.h) {
+        m_gameRunning = false;
+    }
 
     SDL_Delay(60);
 }
 
 void Game::draw() {
     graphics.clear_screen();
+    draw_play_area();
     snake.draw(graphics);
     draw_fruit();
     graphics.show_screen();
 }
 
 void Game::move_fruit() {
-    int rand_x = rand() % graphics.get_screen_width() / m_rectSizes;
-    int rand_y = rand() % graphics.get_screen_height() / m_rectSizes;
+    int rand_x = rand() % m_playArea.w / m_rectSizes;
+    int rand_y = rand() % m_playArea.h / m_rectSizes;
     m_fruit = { rand_x * m_rectSizes, rand_y * m_rectSizes, m_rectSizes, m_rectSizes };
 }
 
 void Game::draw_fruit() {
     graphics.render_rect(m_fruit, 255, 0, 0);
+}
+
+void Game::draw_play_area() {
+    graphics.render_rect(m_playArea, 0, 0, 0);
 }
