@@ -25,6 +25,7 @@ void Snake::reset_snake() {
 	m_body.clear();
 	m_growSize = 1;
 	m_headPos = { 320, 240 };
+	SDL_Delay(100);
 }
 
 bool Snake::check_collision() {
