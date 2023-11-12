@@ -21,6 +21,12 @@ void Snake::draw(Graphics& graphics) {
 	}
 }
 
+void Snake::reset_snake() {
+	m_body.clear();
+	m_growSize = 1;
+	m_headPos = { 320, 240 };
+}
+
 bool Snake::check_collision() {
 	for (int i = 0; i < m_body.size(); i++) {
 		SDL_Rect r = m_body[i];

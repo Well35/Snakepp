@@ -10,6 +10,7 @@ public:
 	void move();
 	void draw(Graphics& graphics);
 	void grow(int x) { m_growSize += x; }
+	void reset_snake();
 	bool check_collision();
 
 	void set_segmentSize(int x) { m_segmentSize = x; }

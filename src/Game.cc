@@ -98,7 +98,7 @@ void Game::update() {
     // Handles collision with snake going outside border
     //
     if (snake.get_headPos().x < m_playArea.x or snake.get_headPos().x >= m_playArea.x + m_playArea.w) {
-        m_gameRunning = false;
+        snake.reset_snake();
     }
     else if (snake.get_headPos().y < m_playArea.y or snake.get_headPos().y >= m_playArea.y + m_playArea.h) {
         m_gameRunning = false;
