@@ -116,8 +116,8 @@ void Game::draw() {
 }
 
 void Game::move_fruit() {
-    int rand_x = rand() % m_playArea.w / m_rectSizes;
-    int rand_y = rand() % m_playArea.h / m_rectSizes;
+    int rand_x = (rand() % m_playArea.w + m_rectSizes) / m_rectSizes;
+    int rand_y =( rand() % m_playArea.h + m_rectSizes) / m_rectSizes;
     m_fruit = { rand_x * m_rectSizes, rand_y * m_rectSizes, m_rectSizes, m_rectSizes };
 }
 
